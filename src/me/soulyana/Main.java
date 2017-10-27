@@ -11,6 +11,9 @@ public class Main {
         //variables to hold user input
         String ans;
 
+        //counter to keep track of inputs in each category
+        int counter = 0;
+
         //creates arraylists to hold user inputs
         ArrayList<Person> personArrayList = new ArrayList<Person>();
         ArrayList<Education> educationArrayList = new ArrayList<Education>();
@@ -37,9 +40,10 @@ public class Main {
                 if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
                     System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
                 }
-            } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) ;
-            while(!ans.equalsIgnoreCase("n")) {
+            } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
+            while (ans.equalsIgnoreCase("y") && (counter < 10)){
                 Education ed = new Education();
+                counter++;
 
                 System.out.println("~~~~~Education~~~~~");
                 System.out.println("Enter degree (acronym) earned: ");
@@ -51,10 +55,19 @@ public class Main {
                 System.out.println("Enter graduation year: ");
                 ed.setGradYear(scan.nextInt());
 
-                educationArrayList.add(ed);
+                //clears scanner
                 scan.nextLine();
-                System.out.println("Would you like to add more education? (Y)es or (N)o");
-                ans = scan.nextLine();
+
+                educationArrayList.add(ed);
+
+                do{
+                    System.out.println("Would you like to add more education? (Y)es or (N)o");
+                    ans = scan.nextLine();
+                    if (counter > 9) System.out.println("Sorry, you've reached maximum limit to enter educational achievements!");
+                    if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
+                        System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
+                    }
+                } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
             }
 
             //Prompts user for experience input
@@ -64,9 +77,10 @@ public class Main {
                 if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
                     System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
                 }
-            } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) ;
-            while(ans.equalsIgnoreCase("y")) {
+            } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
+            while (ans.equalsIgnoreCase("y") && (counter < 10)) {
                 Experience exp = new Experience();
+                counter++;
 
                 System.out.println("~~~~~Experience~~~~~");
                 System.out.println("Enter job title: ");
@@ -80,15 +94,25 @@ public class Main {
                 do {
                     System.out.println("Enter duty: ");
                     exp.setDuty(scan.nextLine());
-                    System.out.println("Would you like to add another duty? (Y)es or (N)o");
-                    ans = scan.nextLine();
-
-                }while(ans.equalsIgnoreCase("y"));
+                    do {
+                        System.out.println("Would you like to add another duty? (Y)es or (N)o");
+                        ans = scan.nextLine();
+                        if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
+                            System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
+                        }
+                    } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
+                } while (ans.equalsIgnoreCase("y"));
 
                 experienceArrayList.add(exp);
 
-                System.out.println("Would you like to add more experiences? (Y)es or (N)o");
-                ans = scan.nextLine();
+                do {
+                    System.out.println("Would you like to add more experiences? (Y)es or (N)o");
+                    ans = scan.nextLine();
+                    if (counter > 9) System.out.println("Sorry, you've reached maximum limit to enter work experiences!");
+                    if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
+                        System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
+                    }
+                } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
             }
 
             //Prompts user for skills input
@@ -98,9 +122,11 @@ public class Main {
                 if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
                     System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
                 }
-            }while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) ;
-            while (ans.equalsIgnoreCase("y")){
+            } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
+
+            while (ans.equalsIgnoreCase("y") && (counter < 20)) {
                 Skills skills = new Skills();
+                counter++;
 
                 System.out.println("~~~~~Skills~~~~");
 
@@ -108,10 +134,17 @@ public class Main {
                 skills.setSkill(scan.nextLine());
                 System.out.println("Enter your skill proficiency: ");
                 skills.setSkillRanking(scan.nextLine());
-                System.out.println("Would you like to add another skill? (Y)es or (N)o");
-                ans = scan.nextLine();
 
                 skillsArrayList.add(skills);
+
+                do {
+                    System.out.println("Would you like to add another skill? (Y)es or (N)o");
+                    ans = scan.nextLine();
+                    if (counter > 19) System.out.println("Sorry, you've reached maximum limit to enter skills!");
+                    if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
+                        System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
+                    }
+                } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
             }
 
             //Validates user input for Yes or No to continue or end program
@@ -122,9 +155,7 @@ public class Main {
                 if (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) {
                     System.out.println("Invalid entry. Please only enter Y for yes & N for no!");
                 }
-            }while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n")) ;
-
-
+            } while (!ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
         } while(ans.equalsIgnoreCase("y") && !ans.equalsIgnoreCase("n"));
 
 
